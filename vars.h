@@ -219,6 +219,7 @@ int command_cd() {
 		//srtcpy(leftandright.directory.directorynowcharacter[leftandright.directory.cight], "\0");
 		//while(leftandright.directory.directorynowcharacter[leftandright.directory.cight][xount] == '\0')
 		memset(leftandright.directory.structdirectory_character[leftandright.directory.cight], '\0', MAX_PATH);
+		strcpy(leftandright.directory.structdirectory_character[leftandright.directory.cight], "\a");
 		//redirectorycatlimx();
 		//leftandright.directory.structdirectory_character[leftandright.directory.cight]
 	}
@@ -228,7 +229,6 @@ int command_cd() {
 	else {
 		//...
 		strcpy(leftandright.directory.structdirectory_character[leftandright.directory.cight], leftandright.file.informationkeeps.himsi[10]);
-		strcpy(leftandright.directory.structdirectory_character[leftandright.directory.cight + 1], "\a");
 	}
 	leftandright.directory.cight++;
 	leftandright.file.informationkeeps.ihmsi[11] = 1;
@@ -251,7 +251,7 @@ int shell() {
 		int Panert = 0;
 		scanf("%s", commandinputer); // 뒤에 들어가는거 뭐임/*leftandright.memory.remdriveremembersystem.systempackagerfile*/
 		if (strcmp(commandinputer, "ver") == 0) {
-			printf("fdos4.06 4.06.1\n");
+			printf("fdos4.06 4.06.2\n");
 		}
 		if (strcmp(commandinputer, "dir") == 0) {
 			redirectorycatlimx(leftandright.directory.structdirectory_character, leftandright.directory.directorynowcharacter);
@@ -282,7 +282,7 @@ int shell() {
 
 			strcpy(USA_B, leftandright.directory.directorynowcharacter);
 			strcat(USA_B, "*");
-			printf("현재 디렉토리: %s\n전툰입력값: %s\n", leftandright.directory.directorynowcharacter, USA_B);
+			printf("\n현재 디렉토리: %s\n전툰입력값: %s\n", leftandright.directory.directorynowcharacter, USA_B);
 
 			file_search_handle = FindFirstFileA(USA_B /* leftandright.directory.directorynowcharacter"*"는 파일 이름, 확장자 상관 없이 모든 파일을 검색한다는 뜻*/, /*"m:\\jojo\\*"*/
 				&file_list_data /*포인터로 전달해주셔야 합니다*/); // 파일 검색에 사용할 HANDLE을 생성해주는 함수입니다
@@ -325,6 +325,7 @@ int shell() {
 		if (strcmp(commandinputer, "release") == 0){
 			printf("다람냥 운영환경 4.06 릴리즈\n4.05.0.01\n+ 코드를 윈도우 맞춤으로 재구성함\n\n4.05.0.02\n+ 부팅모드에서 모드를 입력할때 입력받고 종료하는것에서 반복하는것으로 바꿔서 사용자의 부담을 덜함\n\n4.05.0.03\n+ 릴리즈 노트 추가\n+ 쉘에서 나가는 명령어 추가\n+ 부팅 모드에서 나가는 명령어 추가\n\n4.06.0.01\n+ 릴리즈 노트에 개행문자 추가\n+ 치명적인 버그 수정\n\n4.06.0.02\n+ 릴리즈 노트 4.06.0.01 수정\n+ exit에서 필요한 개행문자 추가\n+ 부트모드에서 gui 타이틀 이름 추가\n+ 런모드 gui 타이틀 이름 축뤄\n- 불필요한 열림 삭제(릴리즈 노트, 완전히 나가기)\n\
 				\n4.06.1\n+ cd 명령어 추가\n- 입력할때 뒤에 숫자 제거\n! 정식 출시\n\
+				4.06.2\n+ cd.. 오류 고침\n+ \\n개행문자 dir 첫거 추가\n\
 				\n버그제보: lookout1423@gmail.com\n");
 			//system("start msedge.exe lookout1423@gmail.com");
 		}
